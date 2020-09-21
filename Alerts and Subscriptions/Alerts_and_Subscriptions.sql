@@ -1,3 +1,5 @@
+--Who has alerts or subscriptions? This will combine the list of View-Subscriptions, Alerts, and Workbook-Subscriptions together
+
 select --subscription to single view in workbook
 w.name as "Workbook"
 ,w.owner_name
