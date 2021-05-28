@@ -1,6 +1,6 @@
 --Sometimes you need a list of content to do analysis for tasks or permisisons
-
---Joins to workbooks, views, etc should use both:
+-
+-Joins to workbooks, views, etc should use both:
 -- id is the workbook/view/metric/etc id
 -- use the task column to determine what type of object we are listing with something like task='Workbook' when joining in the workbooks table.
 -- left outer join workbooks on id=workbook.id AND type='Workbook'
@@ -88,3 +88,4 @@ from
 	_projects o
 	INNER JOIN sites s ON o.site_id = s.id
 	INNER JOIN projects p on o.id=p.id;
+
