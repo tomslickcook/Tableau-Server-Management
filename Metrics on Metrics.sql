@@ -1,19 +1,25 @@
 --what metrics are out there?
-select * from metrics m
-inner join _users u on m.owner_id = u.id
-inner join sites s on m.site_id=s.id;
+SELECT
+    *
+FROM
+    metrics m
+    INNER JOIN _users  u ON m.owner_id = u.id
+    INNER JOIN sites   s ON m.site_id = s.id;
 ;
 
-select --Metric Activity Logs, for some reason views aren't attached to a user
-e.created_at
-,t.name as event_name
-,m.name as metric_name
-,hu.name as username
-,e.hist_target_user_id
-from historical_events e
-inner join historical_event_types t on e.historical_event_type_id = t.type_id
-inner join hist_metrics hm on e.hist_metric_id=hm.id
-inner join metrics m on hm.metric_id=m.id
-left outer join hist_users hu on e.hist_actor_user_id=hu.id 
---where t.name like '%Metric%'
+
+
+SELECT --Metric Activity Logs, for some reason viewing a metric aren't attached to a user
+    e.created_at,
+    t.name     AS event_name,
+    m.name     AS metric_name,
+    hu.name    AS username,
+    e.hist_target_user_id
+FROM
+         historical_events e
+    INNER JOIN historical_event_types  t ON e.historical_event_type_id = t.type_id
+    INNER JOIN hist_metrics            hm ON e.hist_metric_id = hm.id
+    INNER JOIN metrics                 m ON hm.metric_id = m.id
+    LEFT OUTER JOIN hist_users              hu ON e.hist_actor_user_id = hu.id
+--WHERE t.name like '%Metric%'
 ;
